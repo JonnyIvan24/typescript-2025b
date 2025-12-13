@@ -3,14 +3,29 @@ interface Print {
 }
 
 class Persona implements Print {
-    id: number;
+    readonly suscribe: boolean; // nos sirve como si fuera una constante
 
-    constructor(id: number) {
-        this.id = id
+    constructor(private _id: number) {
+        this.suscribe = true
+    }
+
+    get id (): number {
+        console.log("getId")
+        return this._id
+    }
+
+    set id (id: number) {
+        console.log("setId")
+        this._id = id
+    }
+
+    private privatePrint(): void {
+        console.log("imprimiendo...." + this._id)
+        // this.suscribe = false
     }
 
     print(): void {
-        console.log("imprimiendo...." + this.id)
+        this.privatePrint()
     }
 }
 
@@ -22,6 +37,9 @@ class Gerente implements Print {
 
 const persona = new Persona(10)
 persona.print()
+persona.id = 20
+persona.id
+console.log(persona.suscribe)
 
 function imprimir(obj: Print) {
     obj.print()
