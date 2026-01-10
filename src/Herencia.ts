@@ -22,6 +22,9 @@ class BaseClass {
     constructor(id: number) {
         this.id = id
     }
+    print(text: string, num: number) {
+        console.log('Imprimiendo desde BaseClass ' + text)
+    }
 }
 
 class MyClass extends BaseClass {
@@ -30,6 +33,11 @@ class MyClass extends BaseClass {
         super(id)
         this.name = name
     }
+
+    print(text: string): void {
+        console.log('imprimiendo desde MyClass ' + text)
+        super.print(text, 1)
+    }
 }
 
 const myClass: MyClass = new MyClass(1, 'Ana')
@@ -37,3 +45,4 @@ const myClass: MyClass = new MyClass(1, 'Ana')
 
 console.log(myClass.id)
 console.log(myClass.name)
+myClass.print('Hola')
