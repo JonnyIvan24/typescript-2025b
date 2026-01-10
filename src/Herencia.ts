@@ -18,20 +18,30 @@ class Persona implements IdName {
 }
 
 class BaseClass {
-    id: number;
-    constructor(id: number) {
+    private id: number;
+    protected name: string
+    constructor(id: number, name: string) {
         this.id = id
+        this.name = name
     }
+
+    printId() {
+        console.log(this.id)
+    }
+
     print(text: string, num: number) {
         console.log('Imprimiendo desde BaseClass ' + text)
     }
 }
 
 class MyClass extends BaseClass {
-    name: string
     constructor(id:number, name: string) {
-        super(id)
-        this.name = name
+        super(id, name)
+        this.name = "Juan"
+    }
+
+    printName() {
+        console.log(this.name)
     }
 
     print(text: string): void {
@@ -42,7 +52,5 @@ class MyClass extends BaseClass {
 
 const myClass: MyClass = new MyClass(1, 'Ana')
 
-
-console.log(myClass.id)
-console.log(myClass.name)
-myClass.print('Hola')
+myClass.printName()
+myClass.printId()
